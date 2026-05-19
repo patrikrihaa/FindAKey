@@ -44,8 +44,6 @@ public class ScreenUtils {
             }
         };
         gradient.setOpaque(true);
-
-
         return gradient;
     }
 }

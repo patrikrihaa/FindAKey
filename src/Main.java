@@ -4,7 +4,7 @@ import Screens.WinScreen;
 
 public class Main {
     public static void main(String[] args) {
-        new StartScreen();
+        new WinScreen();
     }
 
     //TODO Udělat textury a nahrát je do /resources
