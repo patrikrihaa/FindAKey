@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 /**
  * A ceiling trap that hangs from the top of the level on a chain.
  * Kills the player instantly on contact (handled by CollisionHandler).
+ *
+ * @author Patrik Říha
  */
 public class CeilingTrap extends Trap{
     private static final BufferedImage trapTexture = AssetLoader.load("traps/ceiling.png");

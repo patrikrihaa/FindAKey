@@ -13,6 +13,8 @@ import java.util.List;
 /**
  * Handles all rendering for the game — background, objects, player, and HUD.
  * Extends JPanel so it can be dropped directly into the GameScreen window.
+ *
+ * @author Patrik Říha
  */
 public class GameRenderer extends JPanel {
     private static final BufferedImage backgroundTexture = AssetLoader.load("backgrounds/background.png");

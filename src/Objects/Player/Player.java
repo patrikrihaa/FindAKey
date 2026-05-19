@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 /**
  * The player. Moves, jumps, and falls.
  * Collision is handled externally by CollisionHandler.
+ *
+ * @author Patrik Říha
  */
 public class Player extends AnimatedObject {
     private static final BufferedImage[] idleFrames = AssetLoader.loadSpriteSheet("player/idle.png", 5);
@@ -58,6 +60,11 @@ public class Player extends AnimatedObject {
         }
     }
 
+    /**
+     * Draws the player sprite for the current animation frame.
+     * Flips the image horizontally when facing left.
+     * Falls back to a placeholder figure if textures failed to load.
+     */
     @Override
     public void draw(Graphics2D g, int cameraX) {
         BufferedImage[] frames = getCurrentFrames();
@@ -157,6 +164,7 @@ public class Player extends AnimatedObject {
         x = wallX;
     }
 
+    /** @return current vertical velocity — positive means falling, negative means rising */
     public double getVelocityY() {
         return velocityY;
     }

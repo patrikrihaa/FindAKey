@@ -12,6 +12,8 @@ import java.util.List;
  * A solid box the player can stand on.
  * If the box contains the key, pressing E nearby will give it to the player.
  * Collision resolution is handled entirely by CollisionHandler.
+ *
+ * @author Patrik Říha
  */
 public class Box extends GameObject implements Interactable {
     private static final BufferedImage boxTexture  = AssetLoader.load("box/box.png");

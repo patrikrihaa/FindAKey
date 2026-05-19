@@ -15,6 +15,8 @@ import static java.lang.Math.min;
 /**
  * Handles all collision detection between the player and the rest of the world.
  * Checks are called every frame from the game loop in a fixed order.
+ *
+ * @author Patrik Říha
  */
 public class CollisionHandler {
     private final Player player;

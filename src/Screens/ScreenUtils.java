@@ -7,6 +7,8 @@ import java.awt.*;
  * Shared factory methods for building UI elements across all screens.
  * Keeps the look consistent and avoids repeating the same styling code
  * in StartScreen, DeathScreen, and WinScreen.
+ *
+ * @author Patrik Říha
  */
 public class ScreenUtils {
 

@@ -8,6 +8,8 @@ import java.awt.*;
  * Base class for all lethal traps in the level.
  * Subclasses define their own shape, texture, and hitbox.
  * Collision is handled externally by CollisionHandler.
+ *
+ * @author Patrik Říha
  */
 public abstract class Trap extends GameObject {
 

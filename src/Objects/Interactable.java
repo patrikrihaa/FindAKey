@@ -6,6 +6,8 @@ import Objects.Player.Player;
  * Anything in the world the player can interact with (boxes, door).
  * The game loop calls interact() when the player presses E near an object,
  * and checks isActive() first to skip objects that are already used up.
+ *
+ * @author Patrik Říha
  */
 public interface Interactable {
 

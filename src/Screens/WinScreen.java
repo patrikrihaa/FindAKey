@@ -9,6 +9,8 @@ import static Screens.ScreenUtils.*;
 /**
  * Shown when the player collects the key, opens the door, and walks through it.
  * Offers "Play again" for another run or Exit to quit.
+ *
+ * @author Patrik Říha
  */
 public class WinScreen extends JFrame {
 

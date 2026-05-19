@@ -8,6 +8,8 @@ import static Screens.ScreenUtils.*;
 /**
  * The main menu shown when the game first launches.
  * Displays the title, story text, controls, and two buttons: Start and Exit.
+ *
+ * @author Patrik Říha
  */
 public class StartScreen extends JFrame {
 

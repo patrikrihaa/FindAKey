@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
  * Extends GameObject with frame-by-frame sprite animation.
  * Subclasses provide the frames for the current animation state
  * via getCurrentFrames() — the update logic here handles timing and advancing.
+ *
+ * @author Patrik Říha
  */
 public abstract class AnimatedObject extends GameObject {
 

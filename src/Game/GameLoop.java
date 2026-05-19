@@ -14,6 +14,8 @@ import java.util.List;
  * Rendering is handled separately by GameRenderer.
  *
  * Implements Runnable so the game thread can call run() directly.
+ *
+ * @author Patrik Říha
  */
 public class GameLoop implements Runnable {
 

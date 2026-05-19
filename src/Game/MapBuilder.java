@@ -13,6 +13,8 @@ import java.util.Random;
  * Places boxes, traps, and the key at random positions while making sure
  * nothing overlaps. If it can't find a valid spot after 500 tries, it throws
  * GameException and the caller restarts the whole thing.
+ *
+ * @author Patrik Říha
  */
 public class MapBuilder {
     private final int mapWidth;

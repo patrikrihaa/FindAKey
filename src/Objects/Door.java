@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
  * The locked door at the end of the level.
  * Blocks the player until they interact with it while holding the key.
  * Once open, walking through it triggers the win state (checked in CollisionHandler).
+ *
+ * @author Patrik Říha
  */
 public class Door extends GameObject implements Interactable {
     private static final BufferedImage door = AssetLoader.load("door/door.png");

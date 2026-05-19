@@ -5,6 +5,8 @@ import java.awt.*;
 /**
  * Every visible game object implements this so the game loop
  * can call draw() on anything without caring what it is.
+ *
+ * @author Patrik Říha
  */
 public interface Renderable {
 

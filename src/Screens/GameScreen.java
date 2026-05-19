@@ -7,6 +7,8 @@ import javax.swing.*;
 /**
  * The game window. Creates a GameLoop panel, packs the frame,
  * then starts the game thread once the window is visible.
+ *
+ * @author Patrik Říha
  */
 public class GameScreen extends JFrame {
 

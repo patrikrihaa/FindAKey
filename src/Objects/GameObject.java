@@ -5,6 +5,8 @@ import java.awt.*;
 /**
  * Base class for everything in the game world that has a position and size.
  * Subclasses handle their own drawing and update logic.
+ *
+ * @author Patrik Říha
  */
 public abstract class GameObject implements Renderable {
     protected int width;

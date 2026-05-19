@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 /**
  * A ground trap that sits on the floor of the level.
  * Kills the player instantly on contact (handled by CollisionHandler).
+ *
+ * @author Patrik Říha
  */
 public class GroundTrap extends Trap {
     private static final BufferedImage trapTexture = AssetLoader.load("traps/ground.png");

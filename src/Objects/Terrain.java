@@ -7,6 +7,8 @@ import java.awt.*;
  * An invisible boundary strip that spans the full map width.
  * Used purely for collision — CollisionHandler reads its position
  * to snap the player to the ground or ceiling.
+ *
+ * @author Patrik Říha
  */
 public class Terrain extends GameObject {
 

@@ -6,8 +6,10 @@ import java.awt.*;
 import static Screens.ScreenUtils.*;
 
 /**
- * Shown when the player touches a spike.
+ * Shown when the player touches a trap.
  * Offers a "Try again" button that starts a fresh game, or Exit to quit.
+ *
+ * @author Patrik Říha
  */
 public class DeathScreen extends JFrame {
 

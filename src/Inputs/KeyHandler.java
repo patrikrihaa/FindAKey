@@ -7,10 +7,7 @@ import java.awt.event.KeyListener;
  * Tracks the current state of the movement and interact keys.
  * Each flag stays true for as long as the key is held down.
  *
- * Controls:
- *   A / D     — move left / right
- *   SPACE     — jump
- *   E         — interact (unlock door)
+ * @author Patrik Říha
  */
 public class KeyHandler implements KeyListener {
     private boolean left;

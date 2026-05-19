@@ -7,6 +7,8 @@ import java.io.InputStream;
 /**
  * Handles loading image assets from the resources folder.
  * If a texture fails to load, the caller gets null and should fall back to drawing plain shapes.
+ *
+ * @author Patrik Říha
  */
 public class AssetLoader {
     private static final String TEX_PATH = "/";
