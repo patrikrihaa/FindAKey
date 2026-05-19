@@ -1,12 +1,13 @@
 package Game;
 
 import Objects.*;
+import Objects.Player.Player;
 import Screens.DeathScreen;
 import Screens.GameScreen;
 import Screens.WinScreen;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.min;
 
@@ -16,8 +17,8 @@ import static java.lang.Math.min;
  */
 public class CollisionHandler {
     private Player player;
-    private ArrayList<Box> boxes;
-    private ArrayList<Spike> spikes;
+    private List<Box> boxes;
+    private List<Spike> spikes;
     private Key key;
     private Door door;
     private Terrain ground;
@@ -25,7 +26,7 @@ public class CollisionHandler {
     private GameScreen gameScreen;
     private GameLoop gameLoop;
 
-    public CollisionHandler(Player player, ArrayList<Box> boxes, ArrayList<Spike> spikes, Key key, Door door, Terrain ground, Terrain ceiling, GameScreen gameScreen, GameLoop gameLoop) {
+    public CollisionHandler(Player player, List<Box> boxes, List<Spike> spikes, Key key, Door door, Terrain ground, Terrain ceiling, GameScreen gameScreen, GameLoop gameLoop) {
         this.player = player;
         this.boxes = boxes;
         this.spikes = spikes;
@@ -96,6 +97,7 @@ public class CollisionHandler {
                 gameLoop.setDead(true);
                 gameScreen.dispose();
                 new DeathScreen();
+                return;
             }
         }
     }

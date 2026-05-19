@@ -1,6 +1,6 @@
 package Game;
 
-import Objects.Player;
+import Objects.Player.Player;
 
 /**
  * Anything in the world the player can interact with (key, door).

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  * Touching one kills the player instantly (handled in CollisionHandler).
  */
 public class Spike extends GameObject {
-    private boolean onCeiling;
+    private final boolean onCeiling;
 
     // Two separate textures for ground and ceiling variants
     private static final BufferedImage ground = AssetLoader.load("spike.png");
@@ -64,4 +64,8 @@ public class Spike extends GameObject {
     @Override
     public void update() {}
 
+
+    public boolean isOnCeiling() {
+        return onCeiling;
+    }
 }

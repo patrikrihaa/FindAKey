@@ -3,12 +3,12 @@ package Game;
 import Inputs.KeyHandler;
 import Objects.*;
 import Objects.Box;
+import Objects.Player.Player;
 import Screens.GameScreen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Core of the game — runs the update/render loop on a background thread
@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * and implements Runnable so the game thread can call run() directly.
  */
 public class GameLoop extends JPanel implements Runnable {
-    private ArrayList<Box> boxes;
-    private ArrayList<Spike> spikes;
+    private List<Box> boxes;
+    private List<Spike> spikes;
     private Door door;
     private Key key;
     private Player player;
@@ -33,10 +33,10 @@ public class GameLoop extends JPanel implements Runnable {
     private static final int screenWidth = 900;
     private static final int screenHeight = 500;
     private static final int mapWidth = 2400;
-    private  int cameraX = 0;
-    private boolean isFinished = false;
 
-    private boolean isDead = false;
+    private volatile int cameraX = 0;
+    private volatile boolean isFinished = false;
+    private volatile boolean isDead = false;
 
     private final KeyHandler inputs;
     private final GameScreen gameScreen;
@@ -96,7 +96,7 @@ public class GameLoop extends JPanel implements Runnable {
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {
-                e.getMessage();
+                Thread.currentThread().interrupt();
             }
         }
     }

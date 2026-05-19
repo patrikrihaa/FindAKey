@@ -13,7 +13,7 @@ public class Terrain extends GameObject {
     private static final BufferedImage ground = AssetLoader.load("ground.png");
     private static final BufferedImage ceiling = AssetLoader.load("ceiling.png");
 
-    private boolean isCeiling;
+    private final boolean isCeiling;
 
     /**
      * @param x world x start (always 0 for full-width terrain)
@@ -28,7 +28,7 @@ public class Terrain extends GameObject {
     }
 
     /**
-     * repeats the texture to fill the full strip width.
+     * Repeats the texture to fill the full strip width.
      * The ceiling uses a clip region to prevent tiles from bleeding outside the terrain area.
      * Falls back to a plain rectangle if textures aren't available.
      */

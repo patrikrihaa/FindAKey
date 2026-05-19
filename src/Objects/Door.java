@@ -2,6 +2,7 @@ package Objects;
 
 import Game.AssetLoader;
 import Game.Interactable;
+import Objects.Player.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
