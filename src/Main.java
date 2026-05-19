@@ -11,5 +11,4 @@ public class Main {
 
     //TODO ReadMe
     //TODO Game icon
-    //TODO New Textures
 }

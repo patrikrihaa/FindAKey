@@ -21,12 +21,12 @@ public class GameScreen extends JFrame {
         GameLoop game = new GameLoop(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
-        add(game);
+        add(game.getRenderer());
         pack();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
 
-        game.requestFocusInWindow();
+        game.getRenderer().requestFocusInWindow();
         game.startGameThread();
     }
 }
