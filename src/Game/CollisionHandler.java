@@ -2,6 +2,7 @@ package Game;
 
 import Objects.*;
 import Objects.Player.Player;
+import Objects.Traps.Trap;
 import Screens.DeathScreen;
 import Screens.GameScreen;
 import Screens.WinScreen;
@@ -16,21 +17,29 @@ import static java.lang.Math.min;
  * Checks are called every frame from the game loop in a fixed order.
  */
 public class CollisionHandler {
-    private Player player;
-    private List<Box> boxes;
-    private List<Spike> spikes;
-    private Key key;
-    private Door door;
-    private Terrain ground;
-    private Terrain ceiling;
-    private GameScreen gameScreen;
-    private GameLoop gameLoop;
+    private final Player player;
+    private final List<Box> boxes;
+    private final List<Trap> traps;
+    private final Door door;
+    private final Terrain ground;
+    private final Terrain ceiling;
+    private final GameScreen gameScreen;
+    private final GameLoop gameLoop;
 
-    public CollisionHandler(Player player, List<Box> boxes, List<Spike> spikes, Key key, Door door, Terrain ground, Terrain ceiling, GameScreen gameScreen, GameLoop gameLoop) {
+    /**
+     * @param player the player to check collisions for
+     * @param boxes all boxes in the current map
+     * @param traps all traps in the current map
+     * @param door the door at the end of the level
+     * @param ground the ground terrain boundary
+     * @param ceiling the ceiling terrain boundary
+     * @param gameScreen the game window, needed to dispose it on death/win
+     * @param gameLoop the game loop, needed to set dead/finished state
+     */
+    public CollisionHandler(Player player, List<Box> boxes, List<Trap> traps, Door door, Terrain ground, Terrain ceiling, GameScreen gameScreen, GameLoop gameLoop) {
         this.player = player;
         this.boxes = boxes;
-        this.spikes = spikes;
-        this.key = key;
+        this.traps = traps;
         this.door = door;
         this.ground = ground;
         this.ceiling = ceiling;
@@ -91,24 +100,13 @@ public class CollisionHandler {
      * Kills the player immediately if they touch any spike.
      * Disposes the game window and opens the death screen.
      */
-    public void checkSpikes() {
-        for (Spike spike : spikes) {
-            if (player.getBounds().intersects(spike.getBounds())) {
+    public void checkTraps() {
+        for (Trap trap : traps) {
+            if (player.getBounds().intersects(trap.getBounds())) {
                 gameLoop.setDead(true);
                 gameScreen.dispose();
                 new DeathScreen();
                 return;
-            }
-        }
-    }
-
-    /**
-     * Picks up the key when the player walks over it (only if it hasn't been taken yet).
-     */
-    public void checkKey() {
-        if (player.getBounds().intersects(key.getBounds())) {
-            if (key.isActive()) {
-                key.interact(player);
             }
         }
     }

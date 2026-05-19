@@ -33,5 +33,29 @@ public class AssetLoader {
             return null;
         }
     }
+
+    /**
+     * Loads a horizontal sprite sheet and slices it into individual frames.
+     * Assumes all frames are equal width and the sheet is a single row.
+     * Returns an empty array if the image fails to load.
+     *
+     * @param filename name of the sprite sheet file, e.g. "Run.png"
+     * @param frameCount number of frames in the strip
+     * @return array of individual frame images, or an empty array on failure
+     */
+    public static BufferedImage[] loadSpriteSheet(String filename, int frameCount) {
+        BufferedImage sheet = load(filename);
+        if (sheet == null) return new BufferedImage[0];
+
+        int frameWidth = sheet.getWidth() / frameCount;
+        int frameHeight = sheet.getHeight();
+        BufferedImage[] frames = new BufferedImage[frameCount];
+
+        for (int i = 0; i < frameCount; i++) {
+            frames[i] = sheet.getSubimage(i * frameWidth, 0, frameWidth, frameHeight);
+        }
+
+        return frames;
+    }
 }
 

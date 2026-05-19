@@ -1,7 +1,9 @@
-package Objects;
+package Objects.Player;
 
 import Game.AssetLoader;
 import Inputs.KeyHandler;
+import Objects.AnimatedObject;
+import Objects.GameObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,10 +12,15 @@ import java.awt.image.BufferedImage;
  * The player. Moves, jumps, and falls.
  * Collision is handled externally by CollisionHandler.
  */
-public class Player extends GameObject {
-    private static final BufferedImage player = AssetLoader.load("player.png");
+public class Player extends AnimatedObject {
+    private static final BufferedImage[] idleFrames = AssetLoader.loadSpriteSheet("player/idle.png", 5);
+    private static final BufferedImage[] runFrames = AssetLoader.loadSpriteSheet("player/run.png", 8);
+    private static final BufferedImage[] jumpFrames = AssetLoader.loadSpriteSheet("player/jump.png", 6);
 
-    protected boolean hasKey;
+    private PlayerState currentState = PlayerState.IDLE;
+    private boolean facingLeft = false;
+
+    private boolean hasKey;
     private boolean onGround;
     private double velocityY;
     private final KeyHandler inputs;
@@ -23,23 +30,46 @@ public class Player extends GameObject {
     private static final int jump = -13;
     private static final double gravity = 0.6;
 
+    private final int doorX = 2350;
+
     /**
      * @param x starting world x position
      * @param y starting world y position
      * @param inputs keyboard state, read every frame in update()
      */
     public Player(int x, int y, KeyHandler inputs) {
-        super(x, y, 35, 42);
+        super(x, y, 45, 55);
         this.inputs = inputs;
     }
 
     /**
-     * Draws the player texture, or a simple placeholder figure if it didn't load.
+     * Returns the animation frames for the current player state.
+     * Switches between idle, run, and jump arrays.
+     *
+     * @return array of frames matching the current state
      */
     @Override
+    public BufferedImage[] getCurrentFrames() {
+        switch (currentState) {
+            case IDLE: return idleFrames;
+            case RUNNING: return runFrames;
+            case JUMPING: return jumpFrames;
+            default: return idleFrames;
+        }
+    }
+
+    @Override
     public void draw(Graphics2D g, int cameraX) {
-        if (player != null) {
-            g.drawImage(player, x - cameraX, y, width, height, null);
+        BufferedImage[] frames = getCurrentFrames();
+        if (animationFrame >= frames.length) {
+            animationFrame = 0;
+        }
+        if (frames != null && frames.length > 0) {
+            if (facingLeft) {
+                g.drawImage(frames[animationFrame], x - cameraX + width, y, -width, height, null);
+            } else {
+                g.drawImage(frames[animationFrame], x - cameraX, y, width, height, null);
+            }
         } else {
             g.setColor(new Color(80, 80, 80));
             g.fillRect(x - cameraX, y, width, height);
@@ -57,32 +87,44 @@ public class Player extends GameObject {
     /**
      * Reads input, moves horizontally, applies gravity, and increments vertical position.
      * onGround is reset to false here every frame — CollisionHandler sets it back to true,
-     * if the player is actually on a the ground.
+     * if the player is actually on the ground.
      */
     @Override
     public void update() {
         if (inputs.isLeft()) {
+            facingLeft = true;
             x -= speed;
-        }
-        if (inputs.isRight()) {
+            currentState = PlayerState.RUNNING;
+        } else if (inputs.isRight()) {
+            facingLeft = false;
             x += speed;
+            currentState = PlayerState.RUNNING;
+        } else {
+            currentState = PlayerState.IDLE;
         }
-        // Jump only if standing on something
+
         if (inputs.isJump() && onGround) {
             velocityY = jump;
+            onGround = false;
+        }
+
+        if (!onGround) {
+            currentState = PlayerState.JUMPING;
         }
 
         // Keep player inside map bounds
         if (x < 0) {
             x = 0;
         }
-        if (x > 2350) {
-            x = 2350;
+
+        if (x > doorX) {
+            x = doorX;
         }
 
         velocityY += gravity;
         y += velocityY;
-        onGround = false;
+
+        updateAnimation();
     }
 
     /**
@@ -129,7 +171,7 @@ public class Player extends GameObject {
         velocityY = 0;
     }
 
-    /** Called by Key.interact() when the player picks up the key. */
+    /** Called by Box.interact() when the player interacts with a box. */
     public void collectKey() {
         hasKey = true;
     }
