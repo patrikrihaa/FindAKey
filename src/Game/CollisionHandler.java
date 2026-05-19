@@ -133,7 +133,7 @@ public class CollisionHandler {
         int playerCenter = player.getX() + player.getWidth()/2;
         int doorCenter = door.getX() + door.getWidth()/2;
 
-        if (door.isOpen() && Math.abs(playerCenter - doorCenter) < 20) {
+        if (door.isOpen() && Math.abs(playerCenter - doorCenter) < 30) {
             gameLoop.setFinished(true);
             gameScreen.dispose();
             new WinScreen();

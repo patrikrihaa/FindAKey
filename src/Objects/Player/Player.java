@@ -14,8 +14,8 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends AnimatedObject {
     private static final BufferedImage[] idleFrames = AssetLoader.loadSpriteSheet("player/idle.png", 5);
-    private static final BufferedImage[] runFrames = AssetLoader.loadSpriteSheet("player/run.png", 8);
-    private static final BufferedImage[] jumpFrames = AssetLoader.loadSpriteSheet("player/jump.png", 6);
+    private static final BufferedImage[] runFrames = AssetLoader.loadSpriteSheet("player/run.png", 5);
+    private static final BufferedImage[] jumpFrames = AssetLoader.loadSpriteSheet("player/jump.png", 5);
 
     private PlayerState currentState = PlayerState.IDLE;
     private boolean facingLeft = false;
