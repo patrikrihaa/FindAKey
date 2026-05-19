@@ -5,6 +5,6 @@ public class Main {
         new StartScreen();
     }
 
-    //TODO textury -> vložit do /resources/
     //TODO Komentáře
+    //TODO ReadMe
 }
