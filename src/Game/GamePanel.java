@@ -43,4 +43,9 @@ public class GamePanel extends JPanel implements Renderable {
 
     public void initGame() {
     }
+
+    @Override
+    public void draw(Graphics2D g, int cameraX) {
+
+    }
 }
