@@ -11,7 +11,7 @@ public class Player extends GameObject {
 
     protected boolean hasKey;
     private boolean onGround;
-    private int velocityY;
+    private double velocityY;
     private final KeyHandler inputs;
 
     private static final int speed = 5;
@@ -30,6 +30,14 @@ public class Player extends GameObject {
         } else {
             g.setColor(new Color(80, 80, 80));
             g.fillRect(x - cameraX, y, width, height);
+            g.setColor(Color.DARK_GRAY);
+            g.drawRect(x - cameraX, y, width, height);
+            g.setColor(Color.WHITE);
+            g.fillOval(x - cameraX + 6,  y + 10, 7, 7);
+            g.fillOval(x - cameraX + 17, y + 10, 7, 7);
+            g.setColor(Color.BLACK);
+            g.fillOval(x - cameraX + 8,  y + 12, 4, 4);
+            g.fillOval(x - cameraX + 19, y + 12, 4, 4);
         }
     }
 
@@ -57,6 +65,10 @@ public class Player extends GameObject {
 
     public void blockRight(int wallX) {
         x = wallX;
+    }
+
+    public double getVelocityY() {
+        return velocityY;
     }
 
     public void hitCeiling(int ceilingY) {

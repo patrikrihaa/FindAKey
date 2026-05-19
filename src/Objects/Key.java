@@ -31,9 +31,15 @@ public class Key extends GameObject implements Interactable {
             if (key != null) {
                 g.drawImage(key, x - cameraX, y, width, height, null);
             } else {
-                g.setColor(new Color(255, 215, 0));
-                g.fillOval(x - cameraX, y + height, width, height);
-                g.fillRect(x - cameraX, y, width, height);
+                g.setColor(new Color(255, 200, 0));
+                g.fillOval(x - cameraX, y, 16, 16);
+                g.setColor(new Color(200, 140, 0));
+                g.setStroke(new BasicStroke(2f));
+                g.drawOval(x - cameraX, y, 16, 16);
+                g.setColor(new Color(255, 200, 0));
+                g.fillRect(x - cameraX + 5, y + 14, 5, 14);
+                g.fillRect(x - cameraX + 10, y + 17, 6, 4);
+                g.setStroke(new BasicStroke(1f));
             }
         }
 

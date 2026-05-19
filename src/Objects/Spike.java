@@ -11,8 +11,8 @@ public class Spike extends GameObject {
     private static final BufferedImage ground = AssetLoader.load("spike.png");
     private static final BufferedImage ceiling = AssetLoader.load("spike_ceiling.png");
 
-    public Spike(int x, int y, boolean onCeiling) {
-        super(x, y, 30, 30);
+    public Spike(int x, int y,int width, int height, boolean onCeiling) {
+        super(x, y, width, height);
         this.onCeiling = onCeiling;
     }
 
@@ -23,19 +23,23 @@ public class Spike extends GameObject {
             if (ceiling != null) {
                 g.drawImage(ceiling, x- cameraX, y, width, height, null);
             } else {
-                g.setColor(new Color(255, 0, 0));
+                g.setColor(new Color(180, 30, 30));
                 int[] xPoints = {x - cameraX, x - cameraX + width/2, x - cameraX + width};
                 int[] yPoints = {y, y + height, y};
                 g.fillPolygon(xPoints, yPoints, 3);
+                g.setColor(new Color(150, 17, 17));
+                g.drawPolygon(xPoints, yPoints, 3);
             }
         } else {
             if (ground != null) {
                     g.drawImage(ground, x - cameraX, y, width, height, null);
             } else {
-                g.setColor(new Color(255, 0, 0));
+                g.setColor(new Color(180, 30, 30));
                 int[] xPoints = {x - cameraX, x - cameraX + width/2, x - cameraX + width};
                 int[] yPoints = {y + height, y, y + height};
                 g.fillPolygon(xPoints, yPoints, 3);
+                g.setColor(new Color(150, 17, 17));
+                g.drawPolygon(xPoints, yPoints, 3);
             }
         }
     }
