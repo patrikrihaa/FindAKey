@@ -24,8 +24,8 @@ public class MapBuilder {
 
     void build()  throws GameException {
         Random rnd = new Random();
-        int boxCount = 10 + rnd.nextInt(4);
-        int spikeCount = 8 + rnd.nextInt(6);
+        int boxCount = 8 + rnd.nextInt(5);
+        int spikeCount = 10 + rnd.nextInt(5);
 
         boxes = new ArrayList<>();
         spikes = new ArrayList<>();
@@ -61,8 +61,8 @@ public class MapBuilder {
             int attempts = 0;
             do {
                 x = 200 + rnd.nextInt(1800);
-                height = 30 + rnd.nextInt(30);
-                width = 30 + rnd.nextInt(30);
+                height = 40 + rnd.nextInt(30);
+                width = 40 + rnd.nextInt(30);
                 onCeiling = rnd.nextBoolean();
                 freeSpace = true;
                 for (Box box : boxes) {
