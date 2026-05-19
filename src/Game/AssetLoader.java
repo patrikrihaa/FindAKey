@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
 public class AssetLoader {
-    private static final String TexPath = "/resources/";
+    private static final String TexPath = "/";
 
-    public static BufferedImage load(String filename){
+    public static BufferedImage load(String filename) {
         String path = TexPath + filename;
         try {
             InputStream IS = AssetLoader.class.getResourceAsStream(path);

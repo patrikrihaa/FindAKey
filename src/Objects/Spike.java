@@ -11,8 +11,8 @@ public class Spike extends GameObject {
     private static final BufferedImage ground = AssetLoader.load("spike.png");
     private static final BufferedImage ceiling = AssetLoader.load("spike_ceiling.png");
 
-    public Spike(int x, int y, int width, int height, boolean onCeiling) {
-        super(x, y, width, height);
+    public Spike(int x, int y, boolean onCeiling) {
+        super(x, y, 30, 30);
         this.onCeiling = onCeiling;
     }
 

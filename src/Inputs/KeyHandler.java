@@ -32,4 +32,20 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_E: interact = false; break;
         }
     }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isJump() {
+        return jump;
+    }
+
+    public boolean isInteract() {
+        return interact;
+    }
 }
