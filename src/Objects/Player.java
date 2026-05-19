@@ -19,7 +19,7 @@ public class Player extends GameObject {
     private static final double gravity = 0.6;
 
     public Player(int x, int y, KeyHandler inputs) {
-        super(x, y, 30, 40);
+        super(x, y, 35, 42);
         this.inputs = inputs;
     }
 
@@ -43,10 +43,21 @@ public class Player extends GameObject {
 
     @Override
     public void update() {
-        if (inputs.isLeft()) {x -= speed;}
-        if (inputs.isRight()) {x += speed;}
-        if (inputs.isJump() && onGround) {velocityY = jump;}
-        if (x < 0) {x = 0;}
+        if (inputs.isLeft()) {
+            x -= speed;
+        }
+        if (inputs.isRight()) {
+            x += speed;
+        }
+        if (inputs.isJump() && onGround) {
+            velocityY = jump;
+        }
+        if (x < 0) {
+            x = 0;
+        }
+        if (x > 2350) {
+            x = 2350;
+        }
 
         velocityY += gravity;
         y += velocityY;

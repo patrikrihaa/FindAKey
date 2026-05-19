@@ -13,7 +13,7 @@ public class Door extends GameObject implements Interactable {
     private boolean isOpen;
 
     public Door(int x, int y) {
-        super(x, y, 60, 120);
+        super(x, y, 94, 120);
     }
 
     @Override

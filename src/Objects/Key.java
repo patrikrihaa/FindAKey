@@ -12,12 +12,13 @@ public class Key extends GameObject implements Interactable {
     private boolean isTaken;
 
     public Key(int x, int y) {
-        super(x, y, 20, 30);
+        super(x, y - 2, 20, 30);
     }
 
     @Override
     public void interact(Player player) {
         isTaken = true;
+        player.collectKey();
     }
 
     @Override

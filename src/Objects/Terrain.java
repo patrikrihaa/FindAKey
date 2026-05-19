@@ -20,7 +20,11 @@ public class Terrain extends GameObject {
     public void draw(Graphics2D g, int cameraX) {
         if (isCeiling) {
             if (ceiling != null) {
-                g.drawImage(ceiling, x - cameraX, y, width, height, null);
+                g.setClip(x - cameraX, y, width, height);
+                for (int i = x - cameraX; i < x - cameraX + width; i += ceiling.getWidth()) {
+                    g.drawImage(ceiling, i, y, null);
+                }
+                g.setClip(null);
             } else {
                 g.setColor(new Color(50, 30, 10));
                 g.drawRect(x - cameraX, y, width, height);
@@ -29,7 +33,9 @@ public class Terrain extends GameObject {
             }
         }  else {
             if (ground != null) {
-                g.drawImage(ground, x - cameraX, y, width, height, null);
+                for (int i = x - cameraX; i < x - cameraX + width; i += ground.getWidth()) {
+                    g.drawImage(ground, i, y, null);
+                }
             } else {
                 g.setColor(new Color(80, 50, 20));
                 g.fillRect(x - cameraX, y, width, height);
