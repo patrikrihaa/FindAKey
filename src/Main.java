@@ -1,8 +1,9 @@
+import Screens.DeathScreen;
 import Screens.StartScreen;
 
 public class Main {
     public static void main(String[] args) {
-        StartScreen start = new StartScreen();
+        new StartScreen();
     }
 
     //TODO Udělat textury a nahrát je do /resources
