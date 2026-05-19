@@ -4,4 +4,9 @@ public class Main {
     public static void main(String[] args) {
         StartScreen start = new StartScreen();
     }
+
+    //TODO Udělat textury a nahrát je do /resources
+    //TODO Udelat GamePanel + GameScreen
+    //TODO Udělat Door, Box, Key a Player třídy
+    //TODO Udělat Gameloop
 }
