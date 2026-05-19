@@ -1,7 +1,6 @@
 package Objects;
 
 import Game.AssetLoader;
-import Game.Interactable;
 import Objects.Player.Player;
 
 import java.awt.*;
@@ -13,8 +12,8 @@ import java.awt.image.BufferedImage;
  * Once open, walking through it triggers the win state (checked in CollisionHandler).
  */
 public class Door extends GameObject implements Interactable {
-    private static final BufferedImage door = AssetLoader.load("door.png");
-    private static final BufferedImage door_opened = AssetLoader.load("door_opened.png");
+    private static final BufferedImage door = AssetLoader.load("door/door.png");
+    private static final BufferedImage door_opened = AssetLoader.load("door/door_opened.png");
 
     private boolean isOpen;
 
@@ -25,7 +24,7 @@ public class Door extends GameObject implements Interactable {
      * @param y world y position (top of the door)
      */
     public Door(int x, int y) {
-        super(x, y, 94, 120);
+        super(x, y, 152, 160);
     }
 
     /**
