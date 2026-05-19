@@ -1,7 +1,5 @@
 package Objects;
 
-import Game.Renderable;
-
 import java.awt.*;
 
 /**
@@ -17,8 +15,8 @@ public abstract class GameObject implements Renderable {
     /**
      * @param x world x position (left edge)
      * @param y world y position (top edge)
-     * @param width box width in pixels
-     * @param height box height in pixels
+     * @param width object width in pixels
+     * @param height object height in pixels
      */
     public GameObject(int x, int y, int width, int height) {
         this.x = x;
