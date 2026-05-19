@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 import static java.lang.Math.min;
 
+/**
+ * Handles all collision detection between the player and the rest of the world.
+ * Checks are called every frame from the game loop in a fixed order.
+ */
 public class CollisionHandler {
     private Player player;
     private ArrayList<Box> boxes;
@@ -33,18 +37,29 @@ public class CollisionHandler {
         this.gameLoop = gameLoop;
     }
 
+    /**
+     * Snaps the player to the ground if they've fallen into it.
+     */
     public void checkGround() {
         if (player.getY() + player.getHeight() >= ground.getY()) {
             player.land(ground.getY());
         }
     }
 
+    /**
+     * Pushes the player back down if they've bumped into the ceiling.
+     */
     public void checkCeiling() {
         if (player.getY() <= ceiling.getY() + ceiling.getHeight()) {
             player.hitCeiling(ceiling.getY() + ceiling.getHeight());
         }
     }
 
+    /**
+     * Checks each box for collision with the player.
+     * Resolves from the side with the smallest overlap.
+     * Landing on top counts as ground, hitting from below as ceiling, sides block movement.
+     */
     public void checkBoxes() {
         for (Box box : boxes) {
             Rectangle p = player.getBounds();
@@ -71,6 +86,10 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Kills the player immediately if they touch any spike.
+     * Disposes the game window and opens the death screen.
+     */
     public void checkSpikes() {
         for (Spike spike : spikes) {
             if (player.getBounds().intersects(spike.getBounds())) {
@@ -81,6 +100,9 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Picks up the key when the player walks over it (only if it hasn't been taken yet).
+     */
     public void checkKey() {
         if (player.getBounds().intersects(key.getBounds())) {
             if (key.isActive()) {
@@ -89,6 +111,11 @@ public class CollisionHandler {
         }
     }
 
+    /**
+     * Blocks the player from walking through a locked door.
+     * Once the door is open and the player stands roughly centered in front of it,
+     * the win state is triggered and the win screen opens.
+     */
     public void checkDoor() {
         if (!door.isOpen()) {
             Rectangle p = player.getBounds();

@@ -7,6 +7,12 @@ import Objects.Spike;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Procedurally generates the obstacle layout for a single run.
+ * Places boxes, spikes, and the key at random positions while making sure
+ * nothing overlaps. If it can't find a valid spot after 500 tries, it throws
+ * GameException and the caller restarts the whole thing.
+ */
 public class MapBuilder {
     private int mapWidth;
     private int groundY;
@@ -16,12 +22,24 @@ public class MapBuilder {
     private ArrayList<Spike> spikes;
     private Key key;
 
+    /**
+     * @param mapWidth   total horizontal size of the map in pixels
+     * @param groundY    y-coordinate of the ground surface
+     * @param ceilingY   y-coordinate of the ceiling bottom edge
+     */
     public MapBuilder(int mapWidth, int groundY, int ceilingY) {
         this.mapWidth = mapWidth;
         this.groundY = groundY;
         this.ceilingY = ceilingY;
     }
 
+    /**
+     * Generates boxes, spikes, and a key with random positions and sizes.
+     * Each object is checked against all already-placed objects to prevent overlap.
+     * The first ~200px near the player spawn are always left clear.
+     *
+     * @throws GameException  if any object can't be placed after 500 attempts
+     */
     void build()  throws GameException {
         Random rnd = new Random();
         int boxCount = 8 + rnd.nextInt(5);
@@ -30,6 +48,7 @@ public class MapBuilder {
         boxes = new ArrayList<>();
         spikes = new ArrayList<>();
 
+        // Place boxes on the ground at random x positions
         for (int i = 0; i < boxCount; i++) {
             int x, height, width;
             boolean freeSpace;
@@ -39,6 +58,8 @@ public class MapBuilder {
                 height = 50 + rnd.nextInt(70);
                 width = 50 + rnd.nextInt(70);
                 freeSpace = true;
+
+                // Reject if too close to an existing box (10px gap minimum)
                 for (Box existing : boxes) {
                     int boxLeft  = existing.getX() - width - 10;
                     int boxRight = existing.getX() + existing.getWidth() + 10;
@@ -55,6 +76,7 @@ public class MapBuilder {
             boxes.add(new Box(x, groundY - height, width, height));
         }
 
+        // Place spikes — either on the ground or hanging from the ceiling
         for (int i = 0; i < spikeCount; i++) {
             int x, height, width;
             boolean onCeiling, freeSpace;
@@ -92,6 +114,7 @@ public class MapBuilder {
             spikes.add(new Spike(x, y, width, height, onCeiling));
         }
 
+        // Place the key somewhere in the second half of the map, away from obstacles
         int keyX;
         boolean freeSpace;
         int attempts = 0;
@@ -140,14 +163,17 @@ public class MapBuilder {
         this.groundY = groundY;
     }
 
+    /** Returns the list of placed boxes */
     public ArrayList<Box> getBoxes() {
         return boxes;
     }
 
+    /** Returns the list of placed spikes */
     public ArrayList<Spike> getSpikes() {
         return spikes;
     }
 
+    /** Returns the placed key */
     public Key getKey() {
         return key;
     }

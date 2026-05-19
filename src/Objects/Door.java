@@ -6,16 +6,31 @@ import Game.Interactable;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * The locked door at the end of the level.
+ * Blocks the player until they interact with it while holding the key.
+ * Once open, walking through it triggers the win state (checked in CollisionHandler).
+ */
 public class Door extends GameObject implements Interactable {
     private static final BufferedImage door = AssetLoader.load("door.png");
     private static final BufferedImage door_opened = AssetLoader.load("door_opened.png");
 
     private boolean isOpen;
 
+    /**
+     * Fixed size of 94×120 — sized to match the door texture.
+     *
+     * @param x world x position
+     * @param y world y position (top of the door)
+     */
     public Door(int x, int y) {
         super(x, y, 94, 120);
     }
 
+    /**
+     * Opens the door if the player has the key.
+     * Does nothing if the key hasn't been collected yet.
+     */
     @Override
     public void interact(Player player) {
         if (player.hasKey()) {
@@ -23,11 +38,16 @@ public class Door extends GameObject implements Interactable {
         }
     }
 
+    /** Returns false once the door is open */
     @Override
     public boolean isActive() {
         return !isOpen;
     }
 
+    /**
+     * Draws the closed or open door texture depending on state.
+     * Falls back to a hand-drawn rectangle if textures are missing.
+     */
     @Override
     public void draw(Graphics2D g, int cameraX) {
         if (!isOpen) {
@@ -55,10 +75,12 @@ public class Door extends GameObject implements Interactable {
         }
     }
 
+    /** Door doesn't animate or move on its own. */
     @Override
     public void update() {
     }
 
+    /** True after the player has unlocked it. */
     public boolean isOpen(){
         return isOpen;
     }

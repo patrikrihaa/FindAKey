@@ -5,17 +5,33 @@ import Game.AssetLoader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * A lethal spike — either pointing up from the ground or pointing down from the ceiling.
+ * Touching one kills the player instantly (handled in CollisionHandler).
+ */
 public class Spike extends GameObject {
     private boolean onCeiling;
 
+    // Two separate textures for ground and ceiling variants
     private static final BufferedImage ground = AssetLoader.load("spike.png");
     private static final BufferedImage ceiling = AssetLoader.load("spike_ceiling.png");
 
+    /**
+     * @param x world x position
+     * @param y world y position (top edge for ground spikes, top of the triangle for ceiling spikes)
+     * @param width spike width
+     * @param height spike height
+     * @param onCeiling true if the spike hangs from the ceiling, false if it's on the ground
+     */
     public Spike(int x, int y,int width, int height, boolean onCeiling) {
         super(x, y, width, height);
         this.onCeiling = onCeiling;
     }
 
+    /**
+     * Draws the appropriate texture, or a hand-drawn triangle fallback.
+     * Ceiling spikes point downward; ground spikes point upward.
+     */
     @Override
     public void draw(Graphics2D g, int cameraX) {
 
@@ -44,6 +60,7 @@ public class Spike extends GameObject {
         }
     }
 
+    /** Spikes don't move. */
     @Override
     public void update() {}
 

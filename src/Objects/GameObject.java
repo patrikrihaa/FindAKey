@@ -4,12 +4,22 @@ import Game.Renderable;
 
 import java.awt.*;
 
+/**
+ * Base class for everything in the game world that has a position and size.
+ * Subclasses handle their own drawing and update logic.
+ */
 public abstract class GameObject implements Renderable {
     protected int width;
     protected int height;
     protected int x;
     protected int y;
 
+    /**
+     * @param x world x position (left edge)
+     * @param y world y position (top edge)
+     * @param width box width in pixels
+     * @param height box height in pixels
+     */
     public GameObject(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -17,10 +27,13 @@ public abstract class GameObject implements Renderable {
         this.height = height;
     }
 
+    /** Draws the object on screen. cameraX is the current scroll offset. */
     public abstract void draw(Graphics2D g, int cameraX);
 
+    /** Updates the object's state each frame. */
     public abstract void update();
 
+    /** Returns the axis-aligned bounding box used for collision detection. */
     public  Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }

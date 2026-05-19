@@ -3,6 +3,15 @@ package Inputs;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Tracks the current state of the movement and interact keys.
+ * Each flag stays true for as long as the key is held down.
+ *
+ * Controls:
+ *   A / D     — move left / right
+ *   SPACE     — jump
+ *   E         — interact (unlock door)
+ */
 public class KeyHandler implements KeyListener {
     private boolean left;
     private boolean right;
@@ -13,6 +22,7 @@ public class KeyHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /** Sets the matching flag to true when a key is pressed. */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -23,6 +33,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    /** Clears the matching flag when the key is released. */
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {

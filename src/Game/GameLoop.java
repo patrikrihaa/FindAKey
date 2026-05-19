@@ -10,6 +10,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * Core of the game — runs the update/render loop on a background thread
+ * and owns all the game objects for the current run.
+ *
+ * Extends JPanel so it can be dropped straight into the GameScreen window,
+ * and implements Runnable so the game thread can call run() directly.
+ */
 public class GameLoop extends JPanel implements Runnable {
     private ArrayList<Box> boxes;
     private ArrayList<Spike> spikes;
@@ -20,6 +27,7 @@ public class GameLoop extends JPanel implements Runnable {
     private Terrain ground;
     private CollisionHandler collisionHandler;
 
+    // Fixed layout constants — the logical game area is always 900×500
     private static final int groundY = 420;
     private static final int ceilingY = 80;
     private static final int screenWidth = 900;
@@ -34,6 +42,11 @@ public class GameLoop extends JPanel implements Runnable {
     private final GameScreen gameScreen;
     private Thread gameThread;
 
+    /**
+     * Sets up the panel, attaches keyboard input, and builds the initial map.
+     *
+     * @param gameScreen the parent window, needed so we can close it on death/win
+     */
     public GameLoop(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         setBackground(Color.BLACK);
@@ -46,6 +59,10 @@ public class GameLoop extends JPanel implements Runnable {
         initGame();
     }
 
+    /**
+     * Creates all game objects and generates a new random map.
+     * If the map builder fails (can't place something after 500 tries), it just tries again.
+     */
     public void initGame() {
         player = new Player(50, groundY - 40, inputs);
         door = new Door(2200, groundY - 120);
@@ -67,6 +84,10 @@ public class GameLoop extends JPanel implements Runnable {
         collisionHandler = new CollisionHandler(player, boxes, spikes, key, door, ground, ceiling, gameScreen, this);
     }
 
+    /**
+     * Main loop — runs at roughly 60 fps (16 ms sleep per frame).
+     * Calls update() then repaint() every iteration until the thread is stopped.
+     */
     @Override
     public void run() {
         while (gameThread != null) {
@@ -80,6 +101,10 @@ public class GameLoop extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * Advances the game state by one frame.
+     * Skipped entirely if the player is dead or has finished the game.
+     */
     private void update() {
         if (isDead || isFinished) return;
 
@@ -99,11 +124,18 @@ public class GameLoop extends JPanel implements Runnable {
         cameraX = Math.clamp(player.getX() - screenWidth / 2, 0, mapWidth - screenWidth);
     }
 
+    /**
+     * Starts the game thread. Call this after the window is visible.
+     */
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
+    /**
+     * Draws everything: background, terrain, obstacles, key, door, player, then the HUD on top.
+     * The whole scene is scaled and centered to fit any window size while keeping the 900×500 aspect ratio.
+     */
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -133,6 +165,10 @@ public class GameLoop extends JPanel implements Runnable {
         drawHUD(g2);
     }
 
+    /**
+     * Draws the key status indicator in the top-left corner
+     * and a context-sensitive "press E to unlock" prompt near the door.
+     */
     private void drawHUD(Graphics2D g) {
         g.setColor(new Color(0, 0, 0, 130));
         g.fillRoundRect(8, 8, 215, 32, 4, 4);

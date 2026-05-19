@@ -6,8 +6,15 @@ import java.awt.*;
 
 import static Screens.ScreenUtils.*;
 
+/**
+ * Shown when the player collects the key, opens the door, and walks through it.
+ * Offers "Play again" for another run or Exit to quit.
+ */
 public class WinScreen extends JFrame {
 
+    /**
+     * Builds and shows the win screen immediately on construction.
+     */
     public WinScreen() {
         super("Locked");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,6 +28,11 @@ public class WinScreen extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Assembles the inner panel with title, win message, and play-again/exit buttons.
+     *
+     * @return the assembled content panel
+     */
     private JPanel buildContent(){
         JPanel panel = new JPanel(null);
         panel.setOpaque(false);

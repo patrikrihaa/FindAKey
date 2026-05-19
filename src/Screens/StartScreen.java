@@ -5,8 +5,15 @@ import java.awt.*;
 
 import static Screens.ScreenUtils.*;
 
+/**
+ * The main menu shown when the game first launches.
+ * Displays the title, story text, controls, and two buttons: Start and Exit.
+ */
 public class StartScreen extends JFrame {
 
+    /**
+     * Builds and shows the start screen immediately on construction.
+     */
     public StartScreen() {
         super("Locked");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +27,12 @@ public class StartScreen extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Puts together the inner panel with title, description, controls info, and action buttons.
+     * Uses a null layout so everything is positioned manually.
+     *
+     * @return the assembled content panel
+     */
     private JPanel buildContent() {
         JPanel panel = new JPanel(null);
         panel.setOpaque(false);
