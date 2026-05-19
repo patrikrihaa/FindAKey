@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FindAKey.iml" filepath="$PROJECT_DIR$/FindAKey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Locked.iml" filepath="$PROJECT_DIR$/Locked.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 import Screens.DeathScreen;
 import Screens.StartScreen;
+import Screens.WinScreen;
 
 public class Main {
     public static void main(String[] args) {
