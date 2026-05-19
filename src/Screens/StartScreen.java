@@ -19,8 +19,7 @@ public class StartScreen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-       JPanel gradient = makeGradient(new Color(15, 15, 28), new Color(28, 28, 58));
+        JPanel gradient = makeGradient(new Color(15, 15, 28), new Color(28, 28, 58));
         gradient.add(buildContent());
         setContentPane(gradient);
 
@@ -43,15 +42,15 @@ public class StartScreen extends JFrame {
         panel.add(title);
 
         JTextArea text = makeText(
-                "Deep inside a dark cave a locked door stands between" +
+                "Deep inside a dungeon a locked door stands between" +
                         "\nyou and freedom. Find the hidden key somewhere in" +
                         "\nthe darkness, make your way past the obstacles and" +
-                        "\nspikes, and unlock the door to escape." +
+                        "\ntraps, and unlock the door to escape." +
 
                         "\n\nControls:" +
                         "\nA / D — move left / right" +
                         "\nSPACE — jump" +
-                        "\nE — interact with door"
+                        "\nE — interact with door & crates"
         );
         text.setBounds(40, 110, 520, 180);
         panel.add(text);

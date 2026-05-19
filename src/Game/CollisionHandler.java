@@ -97,7 +97,7 @@ public class CollisionHandler {
     }
 
     /**
-     * Kills the player immediately if they touch any spike.
+     * Kills the player immediately if they touch any trap.
      * Disposes the game window and opens the death screen.
      */
     public void checkTraps() {

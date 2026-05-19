@@ -15,7 +15,7 @@ import java.util.List;
  * Extends JPanel so it can be dropped directly into the GameScreen window.
  */
 public class GameRenderer extends JPanel {
-    private static final BufferedImage backgroundTexture = AssetLoader.load("background.png");
+    private static final BufferedImage backgroundTexture = AssetLoader.load("backgrounds/background.png");
 
     private static final int screenWidth = 900;
     private static final int screenHeight = 500;
@@ -31,16 +31,16 @@ public class GameRenderer extends JPanel {
     private String searchMessage;
 
     /**
-     * @param player  the player to draw
-     * @param door    the door to draw
-     * @param boxes   all boxes in the current map
-     * @param traps   all traps in the current map
+     * @param player the player to draw
+     * @param door the door to draw
+     * @param boxes all boxes in the current map
+     * @param traps all traps in the current map
      */
     public GameRenderer(Player player, Door door, List<Box> boxes, List<Trap> traps) {
         this.player = player;
-        this.door   = door;
-        this.boxes  = boxes;
-        this.traps  = traps;
+        this.door = door;
+        this.boxes = boxes;
+        this.traps = traps;
 
         setBackground(Color.BLACK);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -51,7 +51,7 @@ public class GameRenderer extends JPanel {
      * Updates the camera offset and current search message before each frame is drawn.
      * Called by GameLoop every tick before repaint().
      *
-     * @param cameraX       current horizontal scroll offset
+     * @param cameraX current horizontal scroll offset
      * @param searchMessage message to show when searching a crate, or null if none
      */
     public void setState(int cameraX, String searchMessage) {

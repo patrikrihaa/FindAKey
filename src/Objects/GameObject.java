@@ -32,7 +32,7 @@ public abstract class GameObject implements Renderable {
     public abstract void update();
 
     /** Returns the axis-aligned bounding box used for collision detection. */
-    public  Rectangle getBounds() {
+    public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
     }
 

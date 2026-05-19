@@ -70,6 +70,8 @@ public class ScreenUtils {
      */
     public static JPanel makeGradient(Color topColor, Color botColor) {
         JPanel gradient = new JPanel(new GridBagLayout()) {
+
+            @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;

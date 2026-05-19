@@ -26,14 +26,15 @@ public class GameLoop implements Runnable {
     private CollisionHandler collisionHandler;
     private GameRenderer renderer;
 
-    private static final int groundY     = 420;
-    private static final int ceilingY    = 80;
+    // Fixed layout constants — the logical game area is always 900×500
+    private static final int groundY = 420;
+    private static final int ceilingY = 80;
     private static final int screenWidth = 900;
-    private static final int mapWidth    = 2400;
+    private static final int mapWidth = 2400;
 
-    private volatile int cameraX     = 0;
+    private volatile int cameraX = 0;
     private volatile boolean isFinished = false;
-    private volatile boolean isDead     = false;
+    private volatile boolean isDead = false;
 
     private final KeyHandler inputs;
     private final GameScreen gameScreen;
@@ -111,7 +112,7 @@ public class GameLoop implements Runnable {
 
         player.update();
 
-        if (inputs.isInteract() && Math.abs(player.getX() - door.getX()) < 50) {
+        if (inputs.isInteract() && Math.abs(player.getX() - door.getX()) < 80) {
             door.interact(player);
         }
 

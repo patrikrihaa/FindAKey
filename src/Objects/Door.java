@@ -18,7 +18,7 @@ public class Door extends GameObject implements Interactable {
     private boolean isOpen;
 
     /**
-     * Fixed size of 94×120 — sized to match the door texture.
+     * Fixed size of 152×160
      *
      * @param x world x position
      * @param y world y position (top of the door)

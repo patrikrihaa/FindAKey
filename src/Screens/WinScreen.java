@@ -43,7 +43,7 @@ public class WinScreen extends JFrame {
         panel.add(title);
 
         JTextArea text = makeText(
-                "Against all odds, you navigated the treacherous cave," +
+                "Against all odds, you navigated the dungeon," +
                         "\nfound the hidden key and unlocked the door to" +
                         "\nfreedom. The darkness has been conquered." +
 

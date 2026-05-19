@@ -42,12 +42,12 @@ public class DeathScreen extends JFrame {
         panel.add(title);
 
         JTextArea text = makeText(
-                "The cave claimed another victim. You stepped on" +
-                        "\na spike and your journey came to an abrupt end." +
+                "The dungeon claimed another victim. You stepped on" +
+                        "\na trap and your journey came to an abrupt end." +
                         "\nThe darkness is unforgiving, only the most careful" +
                         "\nexplorers make it through alive." +
 
-                        "\n\nHint: Don't step on the spikes!"
+                        "\n\nHint: Don't step on the traps!"
         );
         text.setBounds(40, 120, 520, 180);
         panel.add(text);

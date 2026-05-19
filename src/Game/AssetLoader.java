@@ -9,7 +9,7 @@ import java.io.InputStream;
  * If a texture fails to load, the caller gets null and should fall back to drawing plain shapes.
  */
 public class AssetLoader {
-    private static final String TexPath = "/";
+    private static final String TEX_PATH = "/";
 
     /**
      * Loads an image by filename from the classpath.
@@ -18,15 +18,15 @@ public class AssetLoader {
      * @return the loaded image, or null on failure
      */
     public static BufferedImage load(String filename) {
-        String path = TexPath + filename;
+        String path = TEX_PATH + filename;
         try {
-            InputStream IS = AssetLoader.class.getResourceAsStream(path);
+            InputStream inputStream = AssetLoader.class.getResourceAsStream(path);
 
-            if (IS == null) {
+            if (inputStream == null) {
                 System.out.println("Texture not found: " + path + " -> falling back to default colours.");
                 return null;
             }
-            return ImageIO.read(IS);
+            return ImageIO.read(inputStream);
 
         } catch (Exception e) {
             System.out.println("Could not load texture: " + e.getMessage());
